@@ -44,7 +44,7 @@ export const useGetHandlers = ({
 
         Api.getFilter({filters: newFilters}).then((data) => {
             setLoading(false);
-            if (data?.length) {
+            if (data) {
                 fetchData(data);
                 setIsFilteredMode(true)
             }

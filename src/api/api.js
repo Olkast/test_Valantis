@@ -30,7 +30,7 @@ export const Api = {
             })
             .then(response => response.data.result)
             .catch((error) => {
-            console.log(error.response.data)})
+            console.warn(error.response.data)})
     },
 
     getItems({ids}) {
@@ -41,7 +41,7 @@ export const Api = {
             })
             .then((response) => response.data.result)
             .catch((error) => {
-                console.log(error.response.data)
+                console.warn(error.response.data)
             });
     },
 
@@ -51,7 +51,7 @@ export const Api = {
                 "action": "get_fields",
                 "params": {"field": "brand"}
             }).then(response => response.data.result).catch((error) => {
-            console.log(error.response.data)})
+            console.warn(error.response.data)})
     },
 
     getFilter({filters}) {
@@ -60,6 +60,6 @@ export const Api = {
                 "action": "filter",
                 "params": filters
             }).then(response => response.data.result).catch((error) => {
-            console.log(error.response.data)})
+            console.warn(error.response.data)})
     },
 }

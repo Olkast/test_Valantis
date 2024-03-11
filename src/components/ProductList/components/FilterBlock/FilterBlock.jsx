@@ -4,7 +4,7 @@ import styles from './FilterBlock.module.scss'
 import {useGetHandlers} from "./hooks/useGetHandlers";
 import {useGetBrandOptions} from "./hooks/useGetBrandOptions";
 
-export const FilterBlock = ({fetchData, setIsFilteredMode}) => {
+export const FilterBlock = ({fetchData, setIsFilteredMode, mainLoading, isFilteredMode}) => {
     const [filters, setFilters] = useState({brand: null, product: '', price: ''});
     const [loading, setLoading] = useState(false);
 
@@ -22,7 +22,8 @@ export const FilterBlock = ({fetchData, setIsFilteredMode}) => {
         filters
     })
 
-    const [brandOptions] = useGetBrandOptions()
+    const [brandOptions] = useGetBrandOptions();
+    const isLoading = loading || (mainLoading && isFilteredMode)
 
     return (
         <div className={styles.filtersContainer}>
@@ -44,10 +45,13 @@ export const FilterBlock = ({fetchData, setIsFilteredMode}) => {
                     options={brandOptions}
                 />
             </div>
-            <Button className={styles.button} disabled={loading} loading={loading} onClick={handleFilter}>
+            <Button
+                className={styles.button}
+                disabled={isLoading}
+                onClick={handleFilter}>
                 Фильтровать
             </Button>
-            <Button className={styles.button} onClick={handleResetFilter}>
+            <Button disabled={!isFilteredMode || isLoading} className={styles.button} onClick={handleResetFilter}>
                 Сбросить фильтры
             </Button>
         </div>

@@ -7,9 +7,10 @@ export const useGetBrandOptions = () => {
     useEffect(() => {
         Api.getFields().then(data => {
             if(data) {
-                const options = [...new Set(data)].map((item) => {
+                const options = [];
+                [...new Set(data)].forEach((item) => {
                     if(item) {
-                        return  { value: item, label: item }
+                        options.push({ value: item, label: item })
                     }
                 })
                 setBrandOptions(options.filter((item) => item))
